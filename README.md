@@ -2,7 +2,7 @@
 
 A complete front-end for a fictional vinyl shop where **the whole store is a radiogram cabinet** (a Brazilian *radiola*). You tune the genre on the radio dial, the station's records appear on the shelf, the chosen record drops onto the turntable, the tonearm swings over and a short sample plays. Then it goes into the shopping bag, with a shipping quote by postcode and a checkout. In Portuguese.
 
-**Live:** https://cururupernatorta.github.io/agulha-discos/
+**Live:** https://guilhermebsthyrmer.github.io/agulha-discos/
 
 ## The radiogram
 
