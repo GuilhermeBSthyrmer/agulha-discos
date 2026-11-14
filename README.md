@@ -1,27 +1,32 @@
-# Agulha Discos · record store
+# Agulha Discos · a record store that works like a 1960s radiogram
 
-A complete front-end for a fictional vinyl record shop: catalog, filters, product pages, cart, shipping quote by postcode and checkout. In Portuguese.
+A complete front-end for a fictional vinyl shop where **the whole store is a radiogram cabinet** (a Brazilian *radiola*). You tune the genre on the radio dial, the station's records appear on the shelf, the chosen record drops onto the turntable, the tonearm swings over and a short sample plays. Then it goes into the shopping bag, with a shipping quote by postcode and a checkout. In Portuguese.
 
-**Live:** `https://cururupernatorta.github.io/agulha-discos/` (after GitHub Pages is enabled)
+**Live:** https://cururupernatorta.github.io/agulha-discos/
 
-## Design
+## The radiogram
 
-The shop is a used-record crate: deep turntable-felt green, genre divider tabs, hand-written orange price stickers, and records that slide out of their sleeves. Every cover is **generated in code** from the record's id, style and palette, so the catalog has 16 unique covers with no image files.
+- **Tuning dial** with eight genre "stations" (plus *Tudo*, everything) on a backlit glass scale with frequencies in kHz. Drag the needle, use the mouse wheel, turn the bakelite **tuning knob**, or use the keyboard: the dial is an ARIA `slider` (arrows, Home/End, PageUp/PageDown). Releasing between stations snaps to the nearest one.
+- **Static between stations**, generated with the Web Audio API (band-passed noise whose pitch follows the needle). It only plays while you tune, and there is a switch to turn it off.
+- **Magic eye**: the green tuning tube closes its shadow wedge as you approach a station, drawn with a `conic-gradient` driven by a registered `@property`.
+- **Shelf** of the tuned station, with sort and new/used filters, and a search that looks across all stations, artists and track names.
+- **Turntable** that stays in view: the record drops onto the platter with the label in the record's colours, the sleeve leans against the deck, and **"Ouvir trecho"** swings the tonearm onto the record and plays a loop **synthesized in the browser** from the record's tempo, scale and key (chords, bass, melody, drums and needle crackle). The tonearm's landing angle is calibrated at runtime for whatever size the platter is on screen.
+- **Record card** printed like a back cover: genre, year, label, catalogue number, condition grade, stock-aware quantity and track list by side.
+- Each record has its own URL (`#disco/agl-005`): opening it tunes the dial to its station.
 
-## Features
+## Shop features
 
-- **Catalog** with genre dividers (ARIA tabs, arrow/Home/End keys), new/used filter, sort (newest, price, year, artist), debounced search across title, artist, genre and track names, and an empty state that explains which filters matched nothing.
-- **Product page** in a `<dialog>` with its own URL (`#disco/agl-005`), so a record can be linked and the back button closes it. Turntable with tonearm, track list by side, condition grading and stock-aware quantity.
-- **"Ouvir trecho" (play a sample)**: each record plays a short loop **synthesized with the Web Audio API**: chords, bass, melody and drums from the record's tempo, scale and key, plus needle crackle. No audio files.
-- **Cart** in a slide-in drawer: quantity steppers limited by stock, persistence in `localStorage`, sync between tabs via the `storage` event. Prices are always recomputed from the catalog, so a tampered value in storage can't change a price.
+- **Bag** in a slide-in drawer: quantity limited by stock, persistence in `localStorage`, sync between tabs. Prices are always recomputed from the catalogue, so a tampered value in storage can't change a price.
 - **Shipping quote by CEP** using the public [ViaCEP](https://viacep.com.br/) API, with regional example rates and free shipping above a threshold.
-- **Checkout** (`checkout.html`): contact and address form with masks and inline validation, address autofill from ViaCEP, shipping options as radio cards, order summary, and a demo Pix screen with a generated QR-like pattern. No payment is processed.
+- **Checkout** (`checkout.html`): contact and address form with masks and inline validation, address autofill from ViaCEP, shipping options, order summary and a demo Pix screen. No payment is processed.
+- **24 records with generated covers**: every cover is drawn in SVG from the record's id, style and palette with a seeded PRNG, so there are no image files.
 
 ## Technical notes
 
-- Plain HTML, CSS and JavaScript, split into small modules (`dados`, `capa`, `carrinho`, `som`, `loja`, `checkout`). No build step, no dependencies.
-- Strict Content Security Policy; the only allowed network origin is `viacep.com.br`.
-- Generated covers use a seeded PRNG (mulberry32 over an FNV-1a hash), so each record always gets the same art.
+- Plain HTML, CSS and JavaScript split into small modules. No build step, no dependencies.
+- Strict Content Security Policy: no inline scripts or styles; the only network origin allowed is `viacep.com.br`. Dynamic values go through the CSSOM.
+- Wood grain and speaker cloth are CSS gradients plus an inline SVG `feTurbulence` texture.
+- Respects `prefers-reduced-motion` (no dial sweep, no spinning) and works with keyboard only.
 
 ## Run locally
 
@@ -29,20 +34,18 @@ The shop is a used-record crate: deep turntable-felt green, genre divider tabs, 
 npx serve .
 ```
 
-Open `index.html` directly works too, except the CEP lookup, which needs `http(s)`.
-
 ## Structure
 
 ```
-index.html          catalog
+index.html          the radiogram
 checkout.html       checkout
 css/style.css
 css/checkout.css
-js/dados.js         catalog data
+js/dados.js         catalogue and dial stations
 js/capa.js          generative SVG covers
-js/carrinho.js      cart, shipping rules, ViaCEP client
+js/carrinho.js      bag, shipping rules, ViaCEP client
 js/som.js           Web Audio sample player
-js/loja.js          catalog page
+js/loja.js          dial, static, shelf, turntable, bag
 js/checkout.js      checkout page
 ```
 

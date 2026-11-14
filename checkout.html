@@ -5,24 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://viacep.com.br; base-uri 'self'; form-action 'self'">
   <title>Finalizar compra · Agulha Discos</title>
-  <meta name="theme-color" content="#0E3B2C">
+  <meta name="theme-color" content="#1A0D07">
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Permanent+Marker&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=Damion&family=Permanent+Marker&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/checkout.css">
 </head>
 <body class="pg-checkout">
-<header class="topo">
-  <div class="topo__in">
-    <a class="marca" href="./" aria-label="Voltar para a loja Agulha Discos">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#0B1F18"/><circle cx="20" cy="20" r="13" fill="none" stroke="#2A5A48" stroke-width="1"/><circle cx="20" cy="20" r="9" fill="none" stroke="#2A5A48" stroke-width="1"/><circle cx="20" cy="20" r="6" fill="#FF7A1A"/><circle cx="20" cy="20" r="1.6" fill="#0B1F18"/><path d="M34 4 L24 17" stroke="#F4EDE1" stroke-width="2.4" stroke-linecap="round"/></svg>
-      <span>Agulha<small>discos</small></span>
-    </a>
-    <a class="voltar" href="./">Continuar comprando</a>
-  </div>
+<header class="topo-checkout">
+  <a class="emblema" href="./" aria-label="Voltar para a loja Agulha Discos"><span class="emblema__script">Agulha</span><span class="emblema__sub">discos · alta fidelidade</span></a>
+  <a class="voltar" href="./">Voltar para a radiola</a>
 </header>
 
 <main class="checkout">
@@ -106,7 +101,7 @@
         </div>
       </fieldset>
 
-      <button type="submit" class="btn btn--laranja btn--cheio btn--confirmar">Confirmar pedido</button>
+      <button type="submit" class="tecla tecla--levar tecla--cheia btn--confirmar">Confirmar pedido</button>
       <p class="erro erro--geral" data-erro-geral role="alert"></p>
     </form>
 
@@ -123,8 +118,8 @@
 
   <div class="vazio-checkout" data-vazio hidden>
     <h1 class="titulo">Seu carrinho está vazio</h1>
-    <p>Escolha alguns discos no caixote e volte aqui.</p>
-    <a class="btn btn--laranja" href="./">Abrir o caixote</a>
+    <p>Gire o dial, escolha alguns discos e volte aqui.</p>
+    <a class="tecla tecla--levar" href="./">Abrir a radiola</a>
   </div>
 
   <section class="feito" data-feito hidden aria-labelledby="feito-titulo" tabindex="-1">
@@ -136,11 +131,11 @@
       <div class="feito__codigo">
         <label for="copia-cola">Pix copia e cola</label>
         <textarea id="copia-cola" readonly rows="4" data-copia></textarea>
-        <button type="button" class="btn btn--linha btn--pequeno" data-copiar>Copiar código</button>
+        <button type="button" class="tecla tecla--pequena" data-copiar>Copiar código</button>
         <p class="feito__aviso">Código de demonstração. Não pague: ele não leva a lugar nenhum.</p>
       </div>
     </div>
-    <a class="btn btn--laranja" href="./">Voltar para a loja</a>
+    <a class="tecla tecla--levar" href="./">Voltar para a radiola</a>
   </section>
 </main>
 
