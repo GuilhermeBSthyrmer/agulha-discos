@@ -1,5 +1,7 @@
 # Agulha Discos · a record store that works like a 1960s radiogram
 
+[![CI](https://github.com/GuilhermeBSthyrmer/agulha-discos/actions/workflows/ci.yml/badge.svg)](https://github.com/GuilhermeBSthyrmer/agulha-discos/actions/workflows/ci.yml) [![CodeQL](https://github.com/GuilhermeBSthyrmer/agulha-discos/actions/workflows/codeql.yml/badge.svg)](https://github.com/GuilhermeBSthyrmer/agulha-discos/actions/workflows/codeql.yml)
+
 A complete front-end for a fictional vinyl shop where **the whole store is a radiogram cabinet** (a Brazilian *radiola*). You tune the genre on the radio dial, the station's records appear on the shelf, the chosen record drops onto the turntable, the tonearm swings over and a short sample plays. Then it goes into the shopping bag, with a shipping quote by postcode and a checkout. In Portuguese.
 
 **Live:** https://guilhermebsthyrmer.github.io/agulha-discos/
@@ -28,10 +30,22 @@ A complete front-end for a fictional vinyl shop where **the whole store is a rad
 - Wood grain and speaker cloth are CSS gradients plus an inline SVG `feTurbulence` texture.
 - Respects `prefers-reduced-motion` (no dial sweep, no spinning) and works with keyboard only.
 
+## Tests
+
+End-to-end tests with [Playwright](https://playwright.dev/), each scenario run on a desktop and a mobile viewport (Chromium). 8 scenarios with ViaCEP mocked: tuning the dial by keyboard, filters and search across stations, record to platter to bag with a shipping quote, deep links tuning to the right station, stock limits, and both the empty and the complete checkout.
+
+Every push runs the suite on GitHub Actions, together with Lighthouse (accessibility and best practices must score 90 or more) and CodeQL security analysis. Dependabot keeps the dependencies up to date.
+
+```bash
+npm install
+npx playwright install chromium
+npm test
+```
+
 ## Run locally
 
 ```bash
-npx serve .
+npm start   # http://localhost:4180
 ```
 
 ## Structure
