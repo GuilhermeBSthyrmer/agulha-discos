@@ -6,7 +6,6 @@
 
   const { carrinho, brl, capa } = AGULHA;
   const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
   const form = $('[data-form]');
   const campos = {
