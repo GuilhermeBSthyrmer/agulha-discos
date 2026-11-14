@@ -1,0 +1,58 @@
+/* Catálogo da Agulha Discos.
+ * Artistas, discos e faixas são fictícios. As capas são geradas em capa.js
+ * a partir do estilo e das cores de cada disco.
+ */
+window.AGULHA = window.AGULHA || {};
+
+AGULHA.GENEROS = ['MPB', 'Samba', 'Bossa', 'Jazz', 'Rock nacional', 'Soul e funk', 'Forró', 'Eletrônica'];
+
+AGULHA.DISCOS = [
+  { id: 'agl-001', titulo: 'Maré Alta', artista: 'Lia Camargo', genero: 'MPB', ano: 1978, preco: 189, estado: 'Usado', nota: 'VG+', selo: 'Fonograma', estoque: 2, chegou: 3,
+    estilo: 'ondas', cores: ['#0F4C81', '#F2A541', '#F4EDE1'], audio: { bpm: 92, escala: 'maior', tom: 57 },
+    faixas: ['Maré Alta', 'Cais do Porto', 'Lenço Vermelho', 'Fim de Tarde em Itapuã', 'Barco de Papel', 'Volta'] },
+  { id: 'agl-002', titulo: 'Asfalto Quente', artista: 'Os Viadutos', genero: 'Rock nacional', ano: 1985, preco: 149, estado: 'Novo', nota: 'Reedição 180 g', selo: 'Selo Garagem', estoque: 5, chegou: 1,
+    estilo: 'faixas', cores: ['#D7263D', '#111111', '#F4EDE1'], audio: { bpm: 132, escala: 'menor', tom: 52 },
+    faixas: ['Asfalto Quente', 'Sinaleiro', 'Ônibus Lotado', 'Rádio Pirata', 'Concreto e Neon', 'Última Saída'] },
+  { id: 'agl-003', titulo: 'Terreiro de Lua', artista: 'Mestre Odilon', genero: 'Samba', ano: 1974, preco: 220, estado: 'Usado', nota: 'VG', selo: 'Batuque', estoque: 1, chegou: 6,
+    estilo: 'sol', cores: ['#F2C230', '#7A2E1D', '#F4EDE1'], audio: { bpm: 104, escala: 'maior', tom: 60 },
+    faixas: ['Terreiro de Lua', 'Pandeiro de Couro', 'Morro Acima', 'Roda de Domingo', 'Cuíca Chorona', 'Saudade da Vila'] },
+  { id: 'agl-004', titulo: 'Neon Sertão', artista: 'Cacto Elétrico', genero: 'Eletrônica', ano: 2021, preco: 179, estado: 'Novo', nota: 'Vinil verde', selo: 'Pulso', estoque: 4, chegou: 2,
+    estilo: 'grade', cores: ['#1E1B4B', '#22D3A6', '#FF5DA2'], audio: { bpm: 122, escala: 'dorico', tom: 50 },
+    faixas: ['Neon Sertão', 'Mandacaru Digital', 'Baião 2.0', 'Calor de Meio-Dia', 'Vaqueiro Sintético', 'Miragem'] },
+  { id: 'agl-005', titulo: 'Sopro Baixo', artista: 'Quinteto Ipê', genero: 'Jazz', ano: 1969, preco: 260, estado: 'Usado', nota: 'NM, raro', selo: 'Fonograma', estoque: 1, chegou: 9,
+    estilo: 'circulos', cores: ['#1B1B1B', '#E9C46A', '#E76F51'], audio: { bpm: 84, escala: 'dorico', tom: 48 },
+    faixas: ['Sopro Baixo', 'Ipê Amarelo', 'Contrabaixo na Chuva', 'Clube das Três', 'Fumaça', 'Madrugada Lenta'] },
+  { id: 'agl-006', titulo: 'Fole e Poeira', artista: 'Zé Benedito e Banda', genero: 'Forró', ano: 1981, preco: 119, estado: 'Usado', nota: 'VG', selo: 'Asa Norte', estoque: 3, chegou: 7,
+    estilo: 'tipo', cores: ['#F4EDE1', '#C1121F', '#2B2D42'], audio: { bpm: 140, escala: 'mixolidio', tom: 55 },
+    faixas: ['Fole e Poeira', 'Xote da Feira', 'Zabumba Acesa', 'Noite de São João', 'Estrada de Chão', 'Arrasta-Pé'] },
+  { id: 'agl-007', titulo: 'Balanço da Avenida', artista: 'Orquestra Pé de Ferro', genero: 'Soul e funk', ano: 1977, preco: 199, estado: 'Usado', nota: 'VG+', selo: 'Groove', estoque: 2, chegou: 4,
+    estilo: 'faixas', cores: ['#F77F00', '#003049', '#FCBF49'], audio: { bpm: 108, escala: 'dorico', tom: 53 },
+    faixas: ['Balanço da Avenida', 'Metais na Esquina', 'Baile de Sábado', 'Sapato Branco', 'Suingue Pesado', 'Saideira'] },
+  { id: 'agl-008', titulo: 'Varanda', artista: 'Helena Dumont', genero: 'Bossa', ano: 1963, preco: 310, estado: 'Usado', nota: 'VG+, raro', selo: 'Elenco Azul', estoque: 1, chegou: 10,
+    estilo: 'tipo', cores: ['#F4EDE1', '#1D3557', '#E63946'], audio: { bpm: 76, escala: 'maior7', tom: 58 },
+    faixas: ['Varanda', 'Violão de Domingo', 'Um Banquinho', 'Rua das Flores', 'Inverno no Rio', 'Até Logo'] },
+  { id: 'agl-009', titulo: 'Concreto Armado', artista: 'Fita Crepe', genero: 'Rock nacional', ano: 1992, preco: 129, estado: 'Usado', nota: 'VG', selo: 'Selo Garagem', estoque: 2, chegou: 8,
+    estilo: 'grade', cores: ['#8D99AE', '#2B2D42', '#EF233C'], audio: { bpm: 146, escala: 'menor', tom: 50 },
+    faixas: ['Concreto Armado', 'Prédio Vazio', 'Elevador', 'Garoa', 'Marginal', 'Desligar'] },
+  { id: 'agl-010', titulo: 'Água de Chuva', artista: 'Lia Camargo', genero: 'MPB', ano: 1981, preco: 159, estado: 'Usado', nota: 'VG+', selo: 'Fonograma', estoque: 1, chegou: 5,
+    estilo: 'circulos', cores: ['#2A9D8F', '#264653', '#F4EDE1'], audio: { bpm: 88, escala: 'maior', tom: 55 },
+    faixas: ['Água de Chuva', 'Janela Aberta', 'Telhado', 'Guarda-Chuva', 'Rio Cheio', 'Arco-Íris'] },
+  { id: 'agl-011', titulo: 'Vila Operária', artista: 'Mestre Odilon', genero: 'Samba', ano: 1979, preco: 175, estado: 'Novo', nota: 'Reedição', selo: 'Batuque', estoque: 3, chegou: 2,
+    estilo: 'ondas', cores: ['#2D6A4F', '#F4EDE1', '#F2C230'], audio: { bpm: 100, escala: 'maior', tom: 57 },
+    faixas: ['Vila Operária', 'Apito da Fábrica', 'Marmita', 'Sexta-Feira', 'Tamborim', 'Quintal'] },
+  { id: 'agl-012', titulo: 'Pista Molhada', artista: 'Dupla Função', genero: 'Eletrônica', ano: 2019, preco: 165, estado: 'Novo', nota: 'Vinil duplo', selo: 'Pulso', estoque: 4, chegou: 1,
+    estilo: 'sol', cores: ['#0B132B', '#5BC0BE', '#F4EDE1'], audio: { bpm: 126, escala: 'menor', tom: 49 },
+    faixas: ['Pista Molhada', 'Reflexo', 'Farol Alto', 'Túnel', 'Cinco da Manhã', 'Garoa Digital'] },
+  { id: 'agl-013', titulo: 'Hora Azul', artista: 'Trio Amaro', genero: 'Jazz', ano: 2016, preco: 189, estado: 'Novo', nota: '180 g', selo: 'Noturno', estoque: 2, chegou: 3,
+    estilo: 'ondas', cores: ['#1D3557', '#A8DADC', '#F1FAEE'], audio: { bpm: 80, escala: 'maior7', tom: 51 },
+    faixas: ['Hora Azul', 'Piano de Parede', 'Escovinha', 'Três por Quatro', 'Lâmpada', 'Último Set'] },
+  { id: 'agl-014', titulo: 'Sanfona de Prata', artista: 'Rosa do Agreste', genero: 'Forró', ano: 1976, preco: 139, estado: 'Usado', nota: 'VG', selo: 'Asa Norte', estoque: 1, chegou: 11,
+    estilo: 'sol', cores: ['#E76F51', '#F4EDE1', '#264653'], audio: { bpm: 136, escala: 'mixolidio', tom: 57 },
+    faixas: ['Sanfona de Prata', 'Chuva no Agreste', 'Rosa Vermelha', 'Baião da Saudade', 'Lampião Aceso', 'Despedida'] },
+  { id: 'agl-015', titulo: 'Meia-Luz', artista: 'Helena Dumont', genero: 'Bossa', ano: 1966, preco: 280, estado: 'Usado', nota: 'NM', selo: 'Elenco Azul', estoque: 1, chegou: 12,
+    estilo: 'circulos', cores: ['#F4EDE1', '#6D597A', '#E56B6F'], audio: { bpm: 72, escala: 'maior7', tom: 56 },
+    faixas: ['Meia-Luz', 'Abajur', 'Conversa Baixa', 'Copacabana às Seis', 'Saudade Mansa', 'Boa Noite'] },
+  { id: 'agl-016', titulo: 'Suor e Brilho', artista: 'Orquestra Pé de Ferro', genero: 'Soul e funk', ano: 1979, preco: 210, estado: 'Usado', nota: 'VG+', selo: 'Groove', estoque: 2, chegou: 5,
+    estilo: 'grade', cores: ['#FCBF49', '#D62828', '#003049'], audio: { bpm: 112, escala: 'dorico', tom: 52 },
+    faixas: ['Suor e Brilho', 'Globo Espelhado', 'Calça Boca de Sino', 'Trombone', 'Até o Sol Raiar', 'Chama'] },
+];

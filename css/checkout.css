@@ -1,0 +1,88 @@
+/* Agulha Discos — checkout */
+.topo .voltar { margin-left: auto; color: var(--suave); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--laranja); }
+.topo .voltar:hover { color: var(--papel); }
+
+.checkout { min-height: calc(100dvh - 64px); background: var(--verde-escuro); }
+.checkout__in { max-width: 1120px; margin: 0 auto; padding: clamp(32px, 5vw, 64px) var(--gutter) 80px; display: grid; grid-template-columns: 1.35fr .9fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+.checkout__in[hidden] { display: none; }
+.pedido { display: grid; gap: 1.6rem; }
+.pedido .titulo { margin-bottom: .2rem; }
+.pedido fieldset { margin: 0; border: 0; padding: 1.4rem; background: var(--papel); color: var(--verde-escuro); border-radius: 16px; }
+.pedido legend { float: left; width: 100%; font-weight: 800; font-size: 1.25rem; letter-spacing: -.02em; margin-bottom: 1rem; padding: 0; }
+.grupo { clear: both; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .9rem 1rem; }
+.campo { display: grid; gap: .3rem; align-content: start; grid-column: span 3; }
+.campo:has(#nome) { grid-column: span 6; }
+.campo:has(#cep), .campo:has(#numero), .campo:has(#bairro) { grid-column: span 2; }
+.campo:has(#rua), .campo:has(#complemento) { grid-column: span 4; }
+.campo:has(#cidade) { grid-column: span 3; }
+.campo:has(#uf) { grid-column: span 1; }
+.campo label { font-weight: 700; font-size: .92rem; }
+.opcional { font-weight: 500; color: #5A6A62; font-size: .82rem; }
+.campo input { font: inherit; padding: .65rem .8rem; border: 1.5px solid #B9AE9B; border-radius: 10px; background: #FFFDF8; color: var(--verde-escuro); width: 100%; caret-color: var(--laranja-2); }
+.campo input:focus { outline: none; border-color: var(--laranja-2); box-shadow: 0 0 0 3px rgba(255,122,26,.25); }
+.campo input[readonly] { background: #EFE7DA; color: #33463D; }
+.campo input[aria-invalid="true"] { border-color: var(--erro); background: #FFF5F3; }
+.erro { color: var(--erro); font-size: .86rem; font-weight: 600; }
+.erro:empty { display: none; }
+.erro--geral { text-align: center; color: #FFB4A8; }
+.cep { position: relative; }
+.cep__status { display: block; margin-top: .3rem; font-size: .82rem; font-weight: 700; color: #33463D; }
+.cep__status:empty { display: none; }
+.cep__status.is-carregando { color: #6B7A72; }
+.cep__status.is-ok { color: #1F7A4D; }
+
+.fretes { margin-top: 1.2rem; }
+.fretes__dica { font-size: .88rem; color: #4A5A52; margin-top: .5rem; }
+.fretes__grupo { display: grid; gap: .5rem; }
+.frete-op { position: relative; display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "radio nome preco" "radio prazo preco"; column-gap: .8rem; align-items: center; padding: .8rem 1rem; border: 1.5px solid #CFC4B1; border-radius: 12px; cursor: pointer; background: #FFFDF8; transition: border-color .2s, background .2s; }
+.frete-op:hover { border-color: var(--laranja-2); }
+.frete-op:has(input:checked) { border-color: var(--verde-escuro); background: #F9F3E8; box-shadow: inset 0 0 0 1px var(--verde-escuro); }
+.frete-op input { grid-area: radio; width: 18px; height: 18px; accent-color: var(--laranja-2); margin: 0; }
+.frete-op__nome { grid-area: nome; font-weight: 800; }
+.frete-op__prazo { grid-area: prazo; font-size: .88rem; color: #4A5A52; }
+.frete-op__preco { grid-area: preco; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+.pix { display: flex; gap: 1rem; align-items: start; clear: both; }
+.pix svg { width: 44px; height: 44px; flex: none; color: #1F7A4D; }
+.pix p { color: #33463D; font-size: .95rem; }
+.btn--confirmar { font-size: 1.1rem; padding: 1rem; }
+
+.resumo { position: sticky; top: 90px; background: var(--verde-2); border-radius: 16px; padding: 1.4rem; border: 1px solid var(--verde-3); }
+.resumo h2 { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .6rem; }
+.resumo__itens li { display: grid; grid-template-columns: 52px 1fr auto; gap: .8rem; align-items: center; padding: .7rem 0; border-bottom: 1px solid var(--verde-3); }
+.resumo__capa { width: 52px; height: 52px; }
+.resumo__capa svg { width: 100%; height: 100%; }
+.resumo__itens b { display: block; line-height: 1.2; }
+.resumo__itens span { font-size: .88rem; color: var(--suave); }
+.resumo__preco { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--papel) !important; font-size: 1rem !important; }
+.resumo__contas { display: grid; gap: .4rem; margin-top: 1rem; }
+.resumo__contas div { display: flex; justify-content: space-between; color: var(--suave); }
+.resumo__contas dd { font-variant-numeric: tabular-nums; color: var(--papel); }
+.resumo__total { padding-top: .6rem; border-top: 2px solid var(--papel); margin-top: .3rem; font-size: 1.25rem; font-weight: 800; color: var(--papel) !important; }
+
+.vazio-checkout, .feito { max-width: 760px; margin: 0 auto; padding: clamp(48px, 8vw, 110px) var(--gutter); display: grid; gap: 1.2rem; justify-items: start; }
+.vazio-checkout[hidden], .feito[hidden] { display: none; }
+.vazio-checkout p { color: var(--suave); font-size: 1.15rem; }
+.feito:focus { outline: none; }
+.feito__selo { font-family: var(--f-pincel); color: var(--verde-escuro); background: var(--laranja); padding: .4rem .8rem .3rem; transform: rotate(-4deg); font-size: 1.2rem; }
+.feito__texto { color: var(--suave); font-size: 1.15rem; max-width: 60ch; }
+.feito__pix { display: grid; grid-template-columns: 200px 1fr; gap: 1.6rem; background: var(--papel); color: var(--verde-escuro); border-radius: 16px; padding: 1.4rem; width: 100%; margin: .6rem 0; }
+.qr { width: 200px; height: 200px; }
+.qr svg { width: 100%; height: 100%; border-radius: 8px; }
+.feito__codigo { display: grid; gap: .5rem; align-content: start; }
+.feito__codigo label { font-weight: 800; }
+.feito__codigo textarea { font-family: ui-monospace, Consolas, monospace; font-size: .85rem; border: 1.5px solid #B9AE9B; border-radius: 10px; padding: .6rem; background: #FFFDF8; color: var(--verde-escuro); resize: none; }
+.feito__codigo .btn--linha { justify-self: start; color: var(--verde-escuro); }
+.feito__aviso { font-size: .85rem; color: var(--erro); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .checkout__in { grid-template-columns: 1fr; }
+  .resumo { position: static; order: -1; }
+}
+@media (max-width: 560px) {
+  .grupo { grid-template-columns: 1fr 1fr; }
+  .campo, .campo:has(#nome), .campo:has(#cep), .campo:has(#rua), .campo:has(#bairro) { grid-column: span 2; }
+  .campo:has(#numero), .campo:has(#complemento), .campo:has(#cidade), .campo:has(#uf) { grid-column: span 1; }
+  .feito__pix { grid-template-columns: 1fr; justify-items: center; }
+  .pedido fieldset { padding: 1.1rem; }
+}

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://viacep.com.br; media-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Agulha Discos</title>
+  <meta name="description" content="Loja de discos de vinil novos e usados: MPB, samba, bossa, jazz, rock nacional, soul, forró e eletrônica.">
+  <meta name="theme-color" content="#0E3B2C">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Permanent+Marker&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--
+THESIS: a loja é um caixote de sebo: divisórias de gênero, etiqueta de preço escrita à mão e o disco que sai da capa; recusa a grade branca de e-commerce com selo de desconto.
+OWN-WORLD: verde de feltro de toca-discos, etiqueta laranja escrita a pincel, papel claro, capas geradas uma a uma, vinil com sulcos e selo colorido.
+STORY: quem gosta de disco folheia por gênero, ouve um trecho, confere o estado do usado e compra com frete calculado pelo CEP.
+FIRST VIEWPORT: manchete à esquerda; à direita o disco da semana saindo da capa e girando, com etiqueta de preço e botões de ouvir e comprar.
+FORM: caixote de loja de discos.
+-->
+<a class="skip" href="#caixote">Pular para os discos</a>
+
+<header class="topo">
+  <div class="topo__in">
+    <a class="marca" href="./" aria-label="Agulha Discos, início">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#0B1F18"/><circle cx="20" cy="20" r="13" fill="none" stroke="#2A5A48" stroke-width="1"/><circle cx="20" cy="20" r="9" fill="none" stroke="#2A5A48" stroke-width="1"/><circle cx="20" cy="20" r="6" fill="#FF7A1A"/><circle cx="20" cy="20" r="1.6" fill="#0B1F18"/><path d="M34 4 L24 17" stroke="#F4EDE1" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span>Agulha<small>discos</small></span>
+    </a>
+    <form class="busca" role="search" data-busca>
+      <label class="sr" for="busca">Buscar disco ou artista</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="busca" type="search" placeholder="Buscar disco ou artista" autocomplete="off">
+    </form>
+    <button type="button" class="carrinho-btn" data-abrir-carrinho aria-label="Abrir carrinho">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16l-1.5 12.5a2 2 0 0 1-2 1.5h-9a2 2 0 0 1-2-1.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 7V6a3.5 3.5 0 0 1 7 0v1" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span class="carrinho-btn__txt">Carrinho</span>
+      <span class="contador" data-contador hidden>0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero__in">
+      <div class="hero__texto">
+        <h1>Discos novos e usados, ouvidos um por um antes de chegar até você.</h1>
+        <p>Cada usado é lavado, tocado do começo ao fim e classificado pelo estado da capa e do vinil. Escolha pelo caixote, ouça um trecho e receba em casa.</p>
+        <a class="btn btn--laranja" href="#caixote">Abrir o caixote</a>
+      </div>
+      <div class="destaque" data-destaque>
+        <p class="destaque__rot">Disco da semana</p>
+        <div class="destaque__palco">
+          <div class="vinil vinil--grande" data-vinil-destaque aria-hidden="true"><span class="vinil__selo"></span></div>
+          <div class="destaque__capa" data-capa-destaque></div>
+          <span class="etiqueta etiqueta--grande" data-preco-destaque></span>
+        </div>
+        <div class="destaque__info">
+          <div>
+            <h2 data-titulo-destaque></h2>
+            <p data-artista-destaque></p>
+          </div>
+          <div class="destaque__acoes">
+            <button type="button" class="btn btn--linha" data-ouvir-destaque>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z" fill="currentColor"/></svg>
+              <span>Ouvir trecho</span>
+            </button>
+            <button type="button" class="btn btn--laranja" data-add-destaque>Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="caixote" id="caixote" aria-labelledby="titulo-caixote">
+    <div class="caixote__in">
+      <h2 id="titulo-caixote" class="titulo">O caixote</h2>
+
+      <div class="divisorias" role="tablist" aria-label="Gênero" data-divisorias></div>
+
+      <div class="ferramentas">
+        <div class="segmentado" role="radiogroup" aria-label="Estado do disco" data-estado>
+          <button type="button" role="radio" aria-checked="true" data-valor="">Todos</button>
+          <button type="button" role="radio" aria-checked="false" data-valor="Novo">Novos</button>
+          <button type="button" role="radio" aria-checked="false" data-valor="Usado">Usados</button>
+        </div>
+        <label class="ordem">
+          <span>Ordenar</span>
+          <select data-ordem>
+            <option value="chegada">Chegaram agora</option>
+            <option value="menor">Menor preço</option>
+            <option value="maior">Maior preço</option>
+            <option value="antigo">Mais antigos</option>
+            <option value="az">Artista, A a Z</option>
+          </select>
+        </label>
+        <p class="contagem" data-contagem aria-live="polite"></p>
+      </div>
+
+      <ul class="grade" data-grade></ul>
+      <div class="vazio" data-vazio hidden>
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="#0B1F18"/><circle cx="60" cy="60" r="40" fill="none" stroke="#2A5A48"/><circle cx="60" cy="60" r="30" fill="none" stroke="#2A5A48"/><circle cx="60" cy="60" r="16" fill="#FF7A1A"/><circle cx="60" cy="60" r="3" fill="#0B1F18"/></svg>
+        <p data-vazio-texto>Nenhum disco por aqui.</p>
+        <button type="button" class="btn btn--linha" data-limpar-filtros>Ver o caixote inteiro</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="estado-sec">
+    <div class="estado-sec__in">
+      <h2 class="titulo">Como a gente classifica um usado</h2>
+      <dl class="notas">
+        <div><dt>NM</dt><dd><b>Quase novo.</b> Vinil sem marcas visíveis, capa inteira. Toca como saiu da fábrica.</dd></div>
+        <div><dt>VG+</dt><dd><b>Muito bom.</b> Marcas leves de uso que não aparecem no som. Capa com desgaste discreto.</dd></div>
+        <div><dt>VG</dt><dd><b>Bom.</b> Algum chiado entre faixas e capa com marcas. Preço mais camarada.</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="rodape__in">
+    <p class="marca marca--rodape"><span>Agulha<small>discos</small></span></p>
+    <p>Loja fictícia criada para portfólio. Artistas, discos e capas foram inventados; as capas são geradas pelo próprio site. O frete usa valores de exemplo e o CEP é consultado no ViaCEP. Nenhum pagamento é processado.</p>
+  </div>
+</footer>
+
+<!-- Detalhe do disco -->
+<dialog class="detalhe" data-detalhe aria-labelledby="detalhe-titulo">
+  <button type="button" class="fechar" data-fechar aria-label="Fechar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </button>
+  <div class="detalhe__in">
+    <div class="detalhe__toca">
+      <div class="prato">
+        <div class="vinil vinil--prato" data-vinil-detalhe aria-hidden="true"><span class="vinil__selo"></span></div>
+        <div class="braco" aria-hidden="true"></div>
+      </div>
+      <div class="detalhe__capa" data-capa-detalhe></div>
+    </div>
+    <div class="detalhe__info">
+      <p class="detalhe__meta" data-meta-detalhe></p>
+      <h2 id="detalhe-titulo" data-titulo-detalhe></h2>
+      <p class="detalhe__artista" data-artista-detalhe></p>
+      <p class="detalhe__estado" data-estado-detalhe></p>
+      <div class="detalhe__compra">
+        <span class="etiqueta etiqueta--grande" data-preco-detalhe></span>
+        <div class="qtd" data-qtd>
+          <button type="button" data-menos aria-label="Diminuir quantidade">−</button>
+          <output data-qtd-valor aria-live="polite">1</output>
+          <button type="button" data-mais aria-label="Aumentar quantidade">+</button>
+        </div>
+      </div>
+      <p class="detalhe__estoque" data-estoque-detalhe></p>
+      <div class="detalhe__acoes">
+        <button type="button" class="btn btn--laranja" data-add-detalhe>Adicionar ao carrinho</button>
+        <button type="button" class="btn btn--linha" data-ouvir-detalhe>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z" fill="currentColor"/></svg>
+          <span>Ouvir trecho</span>
+        </button>
+      </div>
+      <h3 class="detalhe__sub">Faixas</h3>
+      <ol class="faixas" data-faixas></ol>
+    </div>
+  </div>
+</dialog>
+
+<!-- Carrinho -->
+<dialog class="gaveta" data-carrinho aria-labelledby="carrinho-titulo">
+  <div class="gaveta__cab">
+    <h2 id="carrinho-titulo">Carrinho</h2>
+    <button type="button" class="fechar" data-fechar aria-label="Fechar carrinho">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul class="gaveta__itens" data-itens></ul>
+  <div class="gaveta__vazio" data-carrinho-vazio hidden>
+    <p>Seu carrinho está vazio.</p>
+    <button type="button" class="btn btn--linha" data-fechar>Voltar para o caixote</button>
+  </div>
+  <div class="gaveta__rodape" data-carrinho-rodape>
+    <form class="frete" data-frete novalidate>
+      <label for="cep-gaveta">Calcular frete</label>
+      <div class="frete__linha">
+        <input id="cep-gaveta" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
+        <button type="submit" class="btn btn--linha btn--pequeno">Calcular</button>
+      </div>
+      <p class="frete__msg" data-frete-msg aria-live="polite"></p>
+      <ul class="frete__opcoes" data-frete-opcoes></ul>
+    </form>
+    <p class="gaveta__total"><span>Subtotal</span><b data-subtotal></b></p>
+    <p class="gaveta__dica" data-dica-frete></p>
+    <a class="btn btn--laranja btn--cheio" href="checkout.html">Finalizar compra</a>
+  </div>
+</dialog>
+
+<div class="aviso" role="status" aria-live="polite" data-aviso hidden>
+  <span data-aviso-texto></span>
+  <button type="button" data-abrir-carrinho>Ver carrinho</button>
+</div>
+
+<script src="js/dados.js"></script>
+<script src="js/capa.js"></script>
+<script src="js/carrinho.js"></script>
+<script src="js/som.js"></script>
+<script src="js/loja.js"></script>
+</body>
+</html>
